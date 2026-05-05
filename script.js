@@ -14,6 +14,12 @@
   ];
 */
 const files = [
+  "9119008dae516ce7cc7677e809af0b56.png",
+  "abstract-desktop-backgrounds-3.jpg",
+  "alex-jodoin-246078-unsplash.jpg",
+  "anders-jilden-307322-unsplash.jpg",
+  "aron-van-de-pol-115112-unsplash.jpg"
+  ];
   /*
     ADD YOUR FILE NAMES HERE.
     These examples are commented out so the page starts empty.
