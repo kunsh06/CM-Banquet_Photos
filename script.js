@@ -28,7 +28,6 @@ const files = [
     "photo2.png",
     "video1.mp4"
   */
-];
 
 const galleryGrid = document.getElementById("galleryGrid");
 const uploadLink = document.getElementById("uploadLink");
