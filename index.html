@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- EDIT WEBSITE TITLE HERE -->
+  <title>CM Banquet</title>
+
+  <!-- Elegant Google fonts. These work on GitHub Pages and Netlify. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--
+    HOW TO EDIT TEXT:
+    Change the title, subtitle, and button text below.
+  -->
+
+  <!-- Small hidden-style Upload link in the top right corner -->
+  <button class="upload-link" id="uploadLink" type="button">Upload</button>
+
+  <!-- HOME SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="eyebrow">College Banquet Gallery</p>
+      <h1>CM Banquet</h1>
+      <p class="subtitle">Relive the Evening</p>
+      <a class="main-button" href="#gallery">View Gallery</a>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-heading">
+      <p class="eyebrow">Captured Moments</p>
+      <h2>Gallery</h2>
+      <p class="section-note">Click any photo or video to download it.</p>
+    </div>
+
+    <!-- JavaScript will fill this grid using the files array in script.js -->
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- VISUAL UPLOAD AREA -->
+  <section class="upload-panel hidden" id="uploadPanel">
+    <div class="upload-card">
+      <button class="close-button" id="closeUpload" type="button" aria-label="Close upload panel">&times;</button>
+      <p class="eyebrow">Private Upload</p>
+      <h2>Visual Upload Area</h2>
+      <p class="section-note">
+        This preview is visual only. To publish files on GitHub Pages, add them to the uploads folder
+        and list their names in script.js.
+      </p>
+
+      <label class="file-box" for="visualUpload">
+        <span>Choose photos or videos</span>
+        <small>Preview only. Files are not saved automatically.</small>
+      </label>
+      <input id="visualUpload" type="file" accept="image/*,video/*" multiple>
+
+      <div class="preview-grid" id="previewGrid"></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
