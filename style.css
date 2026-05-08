@@ -122,13 +122,20 @@ h2 {
   letter-spacing: 0.14em;
 }
 
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 46px;
+}
+
 .main-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 220px;
   min-height: 54px;
-  margin-top: 46px;
   padding: 0 28px;
   border: 1px solid var(--gold);
   border-radius: 4px;
@@ -143,7 +150,16 @@ h2 {
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.main-button:hover {
+.ghost-button {
+  color: var(--gold-bright);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+
+.main-button:hover,
+.gallery-download-button:hover,
+.media-action-button:hover,
+.modal-download:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 34px rgba(244, 217, 130, 0.38);
 }
@@ -165,6 +181,26 @@ h2 {
   line-height: 1.7;
 }
 
+.gallery-download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 24px;
+  padding: 0 22px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  color: #080808;
+  cursor: pointer;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
 .gallery-grid,
 .preview-grid {
   display: grid;
@@ -183,7 +219,6 @@ h2 {
   animation: fadeUp 520ms ease both;
 }
 
-.media-card a,
 .preview-item {
   display: block;
   color: inherit;
@@ -212,6 +247,10 @@ h2 {
   filter: brightness(1.1);
 }
 
+.clickable-media {
+  cursor: zoom-in;
+}
+
 .media-label {
   display: block;
   overflow: hidden;
@@ -220,6 +259,41 @@ h2 {
   font-size: 0.84rem;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.media-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.media-actions .media-action-button:only-child {
+  grid-column: 1 / -1;
+}
+
+.media-action-button,
+.modal-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  color: var(--gold-bright);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.035);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.media-action-button:hover,
+.modal-download:hover {
+  background: rgba(214, 173, 69, 0.1);
 }
 
 .media-fallback {
@@ -317,6 +391,44 @@ input[type="file"] {
   background: var(--black-soft);
 }
 
+.image-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  padding: 24px;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.image-modal.hidden {
+  display: none;
+}
+
+.image-modal-card {
+  position: relative;
+  display: grid;
+  width: min(1100px, 100%);
+  max-height: 92vh;
+  gap: 16px;
+  justify-items: center;
+}
+
+.image-modal-card img {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.65);
+}
+
+.modal-download {
+  min-width: 190px;
+  padding: 0 18px;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -348,7 +460,13 @@ input[type="file"] {
     grid-template-columns: 1fr;
   }
 
-  .main-button {
+  .hero-actions,
+  .main-button,
+  .gallery-download-button {
     width: 100%;
+  }
+
+  .media-actions {
+    grid-template-columns: 1fr;
   }
 }
