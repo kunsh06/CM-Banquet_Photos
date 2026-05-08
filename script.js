@@ -19,22 +19,20 @@ const files = [
   "alex-jodoin-246078-unsplash.jpg",
   "anders-jilden-307322-unsplash.jpg",
   "aron-van-de-pol-115112-unsplash.jpg"
-  ];
-  /*
-    ADD YOUR FILE NAMES HERE.
-    These examples are commented out so the page starts empty.
-
-    "photo1.jpg",
-    "photo2.png",
-    "video1.mp4"
-  */
+];
 
 const galleryGrid = document.getElementById("galleryGrid");
+const downloadAllHome = document.getElementById("downloadAllHome");
+const downloadAllGallery = document.getElementById("downloadAllGallery");
 const uploadLink = document.getElementById("uploadLink");
 const uploadPanel = document.getElementById("uploadPanel");
 const closeUpload = document.getElementById("closeUpload");
 const visualUpload = document.getElementById("visualUpload");
 const previewGrid = document.getElementById("previewGrid");
+const imageModal = document.getElementById("imageModal");
+const expandedImage = document.getElementById("expandedImage");
+const modalDownload = document.getElementById("modalDownload");
+const closeImageModal = document.getElementById("closeImageModal");
 
 const imageTypes = ["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp", "avif", "heic", "heif"];
 const videoTypes = ["mp4", "mov", "m4v", "webm", "ogv", "ogg"];
@@ -50,19 +48,32 @@ function buildGallery() {
   files.forEach((fileName) => {
     const filePath = `uploads/${fileName}`;
     const card = document.createElement("article");
-    const downloadLink = document.createElement("a");
     const label = document.createElement("span");
     const media = createMediaElement(filePath, fileName);
+    const actions = document.createElement("div");
+    const downloadLink = createDownloadLink(filePath, fileName);
 
     card.className = "media-card";
-    downloadLink.href = filePath;
-    downloadLink.download = fileName;
     label.className = "media-label";
     label.textContent = fileName;
+    actions.className = "media-actions";
 
-    downloadLink.appendChild(media);
-    downloadLink.appendChild(label);
-    card.appendChild(downloadLink);
+    if (isImageFile(fileName)) {
+      const expandButton = document.createElement("button");
+      expandButton.className = "media-action-button";
+      expandButton.type = "button";
+      expandButton.textContent = "Expand";
+      expandButton.addEventListener("click", () => openImageModal(filePath, fileName));
+
+      media.classList.add("clickable-media");
+      media.addEventListener("click", () => openImageModal(filePath, fileName));
+      actions.appendChild(expandButton);
+    }
+
+    actions.appendChild(downloadLink);
+    card.appendChild(media);
+    card.appendChild(label);
+    card.appendChild(actions);
     galleryGrid.appendChild(card);
   });
 }
@@ -101,8 +112,53 @@ function createFallback(fileName) {
   return fallback;
 }
 
+function createDownloadLink(filePath, fileName) {
+  const downloadLink = document.createElement("a");
+  downloadLink.className = "media-action-button";
+  downloadLink.href = filePath;
+  downloadLink.download = fileName;
+  downloadLink.textContent = "Download";
+  return downloadLink;
+}
+
+function isImageFile(fileName) {
+  return imageTypes.includes(getExtension(fileName));
+}
+
 function getExtension(fileName) {
   return fileName.split(".").pop().toLowerCase();
+}
+
+function openImageModal(filePath, fileName) {
+  expandedImage.src = filePath;
+  expandedImage.alt = fileName;
+  modalDownload.href = filePath;
+  modalDownload.download = fileName;
+  imageModal.classList.remove("hidden");
+}
+
+function closeExpandedImage() {
+  imageModal.classList.add("hidden");
+  expandedImage.src = "";
+  modalDownload.href = "#";
+}
+
+function downloadAllFiles() {
+  if (files.length === 0) {
+    alert("No files have been added yet.");
+    return;
+  }
+
+  files.forEach((fileName, index) => {
+    setTimeout(() => {
+      const downloadLink = document.createElement("a");
+      downloadLink.href = `uploads/${fileName}`;
+      downloadLink.download = fileName;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+    }, index * 400);
+  });
 }
 
 function openUploadPanel() {
@@ -145,5 +201,20 @@ function showVisualPreviews() {
 uploadLink.addEventListener("click", openUploadPanel);
 closeUpload.addEventListener("click", closeUploadPanel);
 visualUpload.addEventListener("change", showVisualPreviews);
+downloadAllHome.addEventListener("click", downloadAllFiles);
+downloadAllGallery.addEventListener("click", downloadAllFiles);
+closeImageModal.addEventListener("click", closeExpandedImage);
+
+imageModal.addEventListener("click", (event) => {
+  if (event.target === imageModal) {
+    closeExpandedImage();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeExpandedImage();
+  }
+});
 
 buildGallery();
