@@ -14,11 +14,35 @@
   ];
 */
 const files = [
-  "9119008dae516ce7cc7677e809af0b56.png",
-  "abstract-desktop-backgrounds-3.jpg",
-  "alex-jodoin-246078-unsplash.jpg",
-  "anders-jilden-307322-unsplash.jpg",
-  "aron-van-de-pol-115112-unsplash.jpg"
+  "IMG_0159.jpeg",
+  "IMG_0160.jpeg",
+  "IMG_0161.jpeg",
+  "IMG_0162.jpeg",
+  "IMG_0163.jpeg",
+  "IMG_4874.jpeg",
+  "IMG_4876.jpeg",
+  "IMG_4877.jpeg",
+  "IMG_4878.jpeg",
+  "IMG_4879.jpeg",
+  "IMG_5097.CR2",
+  "IMG_5098.CR2",
+  "IMG_5100.CR2",
+  "IMG_5101.CR2",
+  "IMG_5102.CR2",
+  "IMG_5103.CR2",
+  "IMG_5104.CR2",
+  "IMG_5105.CR2",
+  "IMG_5106.CR2",
+  "IMG_5107.CR2",
+  "IMG_5108.CR2",
+  "IMG_5109.CR2",
+  "IMG_5110.CR2",
+  "IMG_5111.CR2",
+  "IMG_5112.CR2",
+  "IMG_5113.CR2",
+  "IMG_5114.CR2",
+  "IMG_5115.CR2",
+  "IMG_5116.CR2"
 ];
 
 const galleryGrid = document.getElementById("galleryGrid");
